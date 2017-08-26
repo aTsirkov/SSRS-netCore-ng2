@@ -1,0 +1,7 @@
+<p-tabView *ngIf="tvIsNotEmpty" (onClose)="tabClose($event)">
+    <p-tabPanel *ngFor="let tab of tabs" [header]="tab.Name" [selected]="false" [closable]="true">
+        <div *ngIf="tab.ReportPath" >
+            <report-view [reportPath]="tab.ReportPath"></report-view>
+        </div>
+    </p-tabPanel>
+</p-tabView>

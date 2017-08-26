@@ -1,0 +1,10 @@
+<p-toolbar>
+    <div class="ui-toolbar-group-right">
+        <button pButton type="button" icon="fa-align-justify" (click)="toggleMenu()"></button>
+    </div>
+</p-toolbar>
+<div style="top:40px">
+    <panel-menu class="ui-panel" [@slideInOut]="menuState"></panel-menu>
+    <home></home>
+</div>
+<router-outlet></router-outlet>

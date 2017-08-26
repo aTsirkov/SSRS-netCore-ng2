@@ -1,0 +1,37 @@
+﻿<p-dialog header={{id}} [(visible)]="display" modal="modal" responsive="true" closable="false">
+    <div class="ui-dialog-content">
+        <form [formGroup]="DialogFrm" (ngSubmit)="onSubmit()">
+            <div class="ui-g-12">
+                <p-radioButton formControlName="daterange" value=1 label="за смену" [(ngModel)]="selectedValue" (click)="onSelectionChange(1)"></p-radioButton>
+                <p-radioButton formControlName="daterange" value=2 label="за сутки" [(ngModel)]="selectedValue" (click)="onSelectionChange(2)"></p-radioButton>
+                <p-radioButton formControlName="daterange" value=3 label="за месяц" [(ngModel)]="selectedValue" (click)="onSelectionChange(3)"></p-radioButton>
+            </div>
+            <div class="ui-g-6">
+                <a>Дата начала:</a>
+                <p-calendar formControlName="dateStart"
+                            [showIcon]="true" appendTo="body" dateFormat="dd.mm.yy" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030">
+                </p-calendar>
+            </div>
+            <div class="ui-g-6">
+                <a>Дата окончания:</a>
+                <p-calendar formControlName="dateEnd"
+                            [showIcon]="true" appendTo="body" dateFormat="dd.mm.yy" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030">
+                </p-calendar>
+            </div>
+            <p-multiSelect formControlName="ct" [options]="validControlTypes" [(ngModel)]="selectedControlTypes"></p-multiSelect>
+            <p-multiSelect formControlName="prodgr" [options]="validproductGroup" [(ngModel)]="selectedproductGroup"></p-multiSelect>
+        </form>
+        <p-fieldset legend="Точка отбора" [toggleable]="true">
+            <leo-treeview [config]="config" [items]="nodes" (selectedChange)="values = $event">
+            </leo-treeview>
+        </p-fieldset>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="submit" [disabled]="!DialogFrm.valid">Submit</button>
+            <button type="button" pButton icon="fa-close" (click)="closeDialog(false)" label="No"></button>
+            <button type="button" pButton icon="fa-check" (click)="closeDialog(true)" label="Yes"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+

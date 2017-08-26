@@ -1,0 +1,23 @@
+﻿<p-dialog header={{id}} [(visible)]="display" modal="modal" responsive="true" closable="false">
+    <div class="ui-dialog-content">
+        <p-calendar [(ngModel)]="fromDate" [showIcon]="true" appendTo="body"
+                    [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2030">
+        </p-calendar>
+        <span style="margin-left:35px">{{fromDate|date}}</span>
+
+        <leo-treeview [config]="config" [items]="nodes" (selectedChange)="values = $event">
+        </leo-treeview>
+
+        <div class="alert alert-success" role="alert">
+            Selected products:
+            <div *ngFor="let row of values">{{row}}</div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="closeDialog(false)" label="No"></button>
+            <button type="button" pButton icon="fa-check" (click)="closeDialog(true)" label="Yes"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+
